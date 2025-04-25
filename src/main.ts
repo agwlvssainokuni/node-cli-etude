@@ -22,7 +22,7 @@ export const main = () => {
         .option('-a, --apple <number>', 'Number of apples')
         .option('-b, --banana <number>', 'Number of bananas')
         .option('-c, --cherry <number>', 'Number of cherries')
-        .argument('<names...>', 'Greeting to')
+        .argument('[names...]', 'Greeting to')
         .parse(process.argv)
 
     const options = command.opts()
