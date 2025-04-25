@@ -23,6 +23,17 @@ export default defineConfig({
             entry: './src/index.ts',
             formats: ['es', 'cjs'],
             fileName: 'node-cli-etude'
+        },
+        sourcemap: true,
+        rollupOptions: {
+            // https://github.com/vitejs/vite/issues/7821
+            external: [
+                "node:events",
+                "node:child_process",
+                "node:path",
+                "node:fs",
+                "node:process",
+            ],
         }
     }
 })
