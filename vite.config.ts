@@ -19,12 +19,15 @@ import {defineConfig} from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
     build: {
+        // https://vite.dev/config/build-options.html#build-lib
         lib: {
             entry: './src/index.ts',
             formats: ['es', 'cjs'],
             fileName: 'node-cli-etude'
         },
+        // https://vite.dev/config/build-options.html#build-sourcemap
         sourcemap: true,
+        // https://vite.dev/config/build-options.html#build-rollupoptions
         rollupOptions: {
             // https://github.com/vitejs/vite/issues/7821
             external: [
