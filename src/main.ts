@@ -15,6 +15,8 @@
  */
 
 import {Command} from 'commander'
+import * as vm from 'vm'
+import * as fs from "node:fs";
 
 export const main = () => {
     const command = new Command()
@@ -22,7 +24,7 @@ export const main = () => {
         .option('-a, --apple <number>', 'Number of apples')
         .option('-b, --banana <number>', 'Number of bananas')
         .option('-c, --cherry <number>', 'Number of cherries')
-        .argument('[names...]', 'Greeting to')
+        .argument('[files...]', 'Files to process')
         .parse(process.argv)
 
     const options = command.opts()
@@ -36,7 +38,27 @@ export const main = () => {
         console.log('cherry = ' + options.cherry)
     }
 
-    for (const arg of command.args) {
-        console.log('Hello ' + arg)
+    const other: string[] = []
+
+    const context = vm.createContext({
+        apple: options.apple,
+        banana: options.banana,
+        cherry: options.cherry,
+        newApple: () => {
+            other.push('apple')
+        },
+        newBanana: () => {
+            other.push('banana')
+        },
+        newCherry: () => {
+            other.push('cherry')
+        },
+    })
+
+    for (const file of command.args) {
+        const script = fs.readFileSync(file, {encoding: 'utf-8'})
+        vm.runInContext(script, context)
     }
+
+    console.log(other)
 }
