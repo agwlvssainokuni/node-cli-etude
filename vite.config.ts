@@ -36,7 +36,7 @@ export default defineConfig({
                 "node:path",
                 "node:fs",
                 "node:process",
-                "vm",
+                "node:vm",
             ],
         }
     }

@@ -15,8 +15,9 @@
  */
 
 import {Command} from 'commander'
-import * as vm from 'vm'
-import * as fs from "node:fs";
+import * as vm from 'node:vm'
+import * as fs from 'node:fs'
+import * as path from 'node:path'
 
 export const main = () => {
     const command = new Command()
@@ -56,8 +57,10 @@ export const main = () => {
     })
 
     for (const file of command.args) {
-        const script = fs.readFileSync(file, {encoding: 'utf-8'})
-        vm.runInContext(script, context)
+        const script = fs.readFileSync(path.resolve(file), {encoding: 'utf-8'})
+        vm.runInContext(script, context, {
+            filename: path.resolve(file),
+        })
     }
 
     console.log(other)

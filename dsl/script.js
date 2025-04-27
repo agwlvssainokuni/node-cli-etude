@@ -1,5 +1,3 @@
-import {apple, banana, cherry, newApple, newBanana, newCherry} from "./dsl";
-
 if (apple) {
     for (let i = 0; i < apple; i++) {
         newApple()
