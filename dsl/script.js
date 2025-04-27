@@ -1,15 +1,9 @@
-if (apple) {
-    for (let i = 0; i < apple; i++) {
-        newApple()
-    }
+for (let i = 0; i < apple ?? 0; i++) {
+    newApple()
 }
-if (banana) {
-    for (let i = 0; i < banana; i++) {
-        newBanana()
-    }
+for (let i = 0; i < banana ?? 0; i++) {
+    newBanana()
 }
-if (cherry) {
-    for (let i = 0; i < cherry; i++) {
-        newCherry()
-    }
+for (let i = 0; i < cherry ?? 0; i++) {
+    newCherry()
 }
